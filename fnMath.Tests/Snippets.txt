@@ -1,0 +1,27 @@
+﻿// --------------------------------------------------
+// ------------------------- Test Setup
+
+#region Test Setup
+
+#endregion
+
+// --------------------------------------------------
+// ------------------------- Constructor Tests
+
+#region Constructor Tests
+
+#endregion
+
+// --------------------------------------------------
+// ------------------------- Operator Overload Tests
+
+#region Operator Overload Tests
+
+#endregion
+
+// --------------------------------------------------
+// ------------------------- Public Method Tests
+
+#region Public Method Tests
+
+#endregion---------------------- Constructor Tests
