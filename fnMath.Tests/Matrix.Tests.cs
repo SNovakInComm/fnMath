@@ -1,8 +1,15 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using fnMath;
 
 namespace fnMath.Tests
 {
-    class Matrix
+    [TestFixture]
+    class MatrixTests
     {
 
         // --------------------------------------------------
@@ -28,11 +35,11 @@ namespace fnMath.Tests
 
             Matrix<double> A = new Matrix<double>(rows, columns);
 
-            Assert.That(A, Is.Not.Null,
+            Assert.That(A != null,
                 "Error: New matrix is null");
-            Assert.That(A.rows, Is.EqualTo(rows),
+            Assert.That(A.rows == rows,
                 "Error: Dimension is wrong in new matrix");
-            Assert.That(A.columns, Is.EqualTo(columns),
+            Assert.That(A.columns == columns,
                 "Error: Dimension is wrong in new matrix");
         }
 
@@ -45,19 +52,18 @@ namespace fnMath.Tests
 
             Matrix<double> A = new Matrix<double>(rows, columns, value);
 
-            Assert.That(A, Is.Not.Null,
+            Assert.That(A != null,
                 "Error: New matrix is null");
-            Assert.That(A.rows, Is.EqualTo(rows),
+            Assert.That(A.rows == rows,
                 "Error: Dimension is wrong in new matrix");
-            Assert.That(A.columns, Is.EqualTo(columns)
-                ,
+            Assert.That(A.columns == columns,
                 "Error: Dimension is wrong in new matrix");
 
             for(int i=0; i<rows; i++)
             {
                 for(int j=0; j<columns; j++)
                 {
-                    Assert.That(A[i][j], Is.EqualTo(value),
+                    Assert.That(A[i][j] == value,
                         "Error: Assigned value is wrong in new matrix");
                 }
             }
@@ -77,9 +83,9 @@ namespace fnMath.Tests
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    Assert.That(A[i][j], Is.EqualTo(value),
+                    Assert.That(A[i][j] == value,
                         "Error in Matrix Copy Constructor");
-                    Assert.That(B[i][j], Is.EqualTo(A[i][j]),
+                    Assert.That(B[i][j] == A[i][j],
                         "Error in Matrix Copy Constructor");
                 }
             }
@@ -125,45 +131,45 @@ namespace fnMath.Tests
             // ------------------------- Test Multiplication 1
             C = A * B;
 
-            Assert.That(C.columns, Is.EqualTo(C.rows)); // The result from this operation should be symmetric
-            Assert.That(C.columns, Is.EqualTo(2),
+            Assert.That(C.columns == C.rows); // The result from this operation should be symmetric
+            Assert.That(C.columns == 2,
                 "Unexpected Column / row count in matrix multiplication");      // And equal to 2
 
-            Assert.That(C[0][0], Is.EqualTo(58),
+            Assert.That(C[0][0] == 58,
                 "Arithmatic error in matrix multiplication");       // This check both the values and
-            Assert.That(C[0][1], Is.EqualTo(64),
+            Assert.That(C[0][1] == 64,
                 "Arithmatic error in matrix multiplication");       // the correct indexing
-            Assert.That(C[1][0], Is.EqualTo(139),
+            Assert.That(C[1][0] == 139,
                 "Arithmatic error in matrix multiplication");      // i.e. C[row][column]
-            Assert.That(C[1][1], Is.EqualTo(154),
+            Assert.That(C[1][1] == 154,
                 "Arithmatic error in matrix multiplication");
 
             // ------------------------- Test Multiplication 2
             C = B * A;
 
-            Assert.That(C.columns, Is.EqualTo(C.rows)); 
-            Assert.That(C.columns, Is.EqualTo(3),
+            Assert.That(C.columns == C.rows); 
+            Assert.That(C.columns == 3,
                 "Unexpected Column / row count in matrix multiplication");      
 
-            Assert.That(C[0][0], Is.EqualTo(39), 
+            Assert.That(C[0][0] == 39, 
                 "Arithmatic error in matrix multiplication");       
-            Assert.That(C[0][1], Is.EqualTo(54),
+            Assert.That(C[0][1] == 54,
                 "Arithmatic error in matrix multiplication");       
-            Assert.That(C[0][2], Is.EqualTo(69),
+            Assert.That(C[0][2] == 69,
                 "Arithmatic error in matrix multiplication");
 
-            Assert.That(C[1][0], Is.EqualTo(49),
+            Assert.That(C[1][0] == 49,
                 "Arithmatic error in matrix multiplication");
-            Assert.That(C[1][1], Is.EqualTo(68),
+            Assert.That(C[1][1] == 68,
                 "Arithmatic error in matrix multiplication");
-            Assert.That(C[1][2], Is.EqualTo(87),
+            Assert.That(C[1][2] == 87,
                 "Arithmatic error in matrix multiplication");
 
-            Assert.That(C[2][0], Is.EqualTo(59),
+            Assert.That(C[2][0] == 59,
                 "Arithmatic error in matrix multiplication");
-            Assert.That(C[2][1], Is.EqualTo(82),
+            Assert.That(C[2][1] == 82,
                 "Arithmatic error in matrix multiplication");
-            Assert.That(C[2][2], Is.EqualTo(105),
+            Assert.That(C[2][2] == 105,
                 "Arithmatic error in matrix multiplication");
 
         }
@@ -203,13 +209,13 @@ namespace fnMath.Tests
             B.isColumn = true;
             C = A * B;
 
-            Assert.That(C.length, Is.EqualTo(A.columns));   //  Check the size
+            Assert.That(C.length == A.columns);   //  Check the size
 
-            Assert.That(C[0], Is.EqualTo(28.0),
+            Assert.That(C[0] == 28.0,
                 "Arithmatic error in matrix * vector multiplication!");
-            Assert.That(C[1], Is.EqualTo(64.0),
+            Assert.That(C[1] == 64.0,
                 "Arithmatic error in matrix * vector multiplication!");
-            Assert.That(C[2], Is.EqualTo(100.0),
+            Assert.That(C[2] == 100.0,
                 "Arithmatic error in matrix * vector multiplication!");
         }
 
@@ -233,14 +239,14 @@ namespace fnMath.Tests
 
             // ------------------------- Check success
 
-            Assert.IsTrue(A.rows == C.columns,
+            Assert.That(A.rows == C.columns,
                 "Dimension Mismatch After Matrix Transpose!!");
-            Assert.IsTrue(A.columns == C.rows,
+            Assert.That(A.columns == C.rows,
                 "Dimension Mismatch After Matrix Transpose!!");
 
             for (int i = 0; i < A.rows; i++)
                 for (int j = 0; j < A.columns; j++)
-                    Assert.IsTrue(A[i][j] == C[j][i], 
+                    Assert.That(A[i][j] == C[j][i], 
                         "Error Copying During Matrix Transpose!");
         }
 
@@ -265,14 +271,14 @@ namespace fnMath.Tests
 
             // ------------------------- Check success
 
-            Assert.IsTrue(A.rows == C.rows,
+            Assert.That(A.rows == C.rows,
                 "Dimension Mismatch After Matrix * Scalar Operation!!");
-            Assert.IsTrue(A.columns == C.columns,
+            Assert.That(A.columns == C.columns,
                 "Dimension Mismatch After Matrix * Scalar Operation!!");
 
             for (int i = 0; i < A.rows; i++)
                 for (int j = 0; j < A.columns; j++)
-                    Assert.IsTrue(A[i][j] * d == C[i][j],
+                    Assert.That(A[i][j] * d == C[i][j],
                         "Arithmatic Error In Matrix * Scalar Operation!");
         }
 
@@ -297,10 +303,10 @@ namespace fnMath.Tests
             for(int i=0; i<A.rows; i++)
                 for(int j=0; j<A.columns; j++)
                     if (i == j)
-                        Assert.IsTrue(A[i][j] == 1.0,
+                        Assert.That(A[i][j] == 1.0,
                             "Diagonal not unity on matrix identity!!");
                     else
-                        Assert.IsTrue(A[i][j] == 0.0,
+                        Assert.That(A[i][j] == 0.0,
                             "Off diagonal not zero on matrix identity!!");
         }
 
@@ -328,7 +334,7 @@ namespace fnMath.Tests
 
             result = A.Max();
 
-            Assert.That(result, Is.EqualTo(maxVal),
+            Assert.That(result == maxVal,
                 "Error finding Max val in matrix");
         }
 
@@ -356,7 +362,7 @@ namespace fnMath.Tests
 
             result = A.Min();
 
-            Assert.That(result, Is.EqualTo(minVal),
+            Assert.That(result == minVal,
                 "Error finding Min val in matrix");
         }
 
@@ -384,9 +390,9 @@ namespace fnMath.Tests
 
             result = A.AbsMax();
 
-            Assert.That(result, Is.EqualTo(maxVal),
+            Assert.That(result == maxVal,
                 "Error finding AbsMax val in matrix");
-            Assert.IsTrue(result < 0.0,
+            Assert.That(result < 0.0,
                "Sign error finding AbsMin val in matrix");
         }
 
@@ -414,9 +420,9 @@ namespace fnMath.Tests
 
             result = A.AbsMin();
 
-            Assert.That(result, Is.EqualTo(minVal),
+            Assert.That(result == minVal,
                 "Error finsing AbsMin val in matrix");
-            Assert.IsTrue(result < 0.0,
+            Assert.That(result < 0.0,
                 "Sign error finding AbsMin val in matrix");
         }
 

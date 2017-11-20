@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using fnMath;
-using NUnit.Framework;
 
 namespace fnMath.Tests
 {
@@ -20,11 +19,6 @@ namespace fnMath.Tests
 
         #region Test Setup
 
-        [SetUp]
-        public void PerformTestSetupFunctions()
-        {
-
-        }
 
         #endregion
 
@@ -39,7 +33,7 @@ namespace fnMath.Tests
             const int LENGTH = 10;
             Vector<double> V = new Vector<double>(LENGTH);
 
-            Assert.That(V.length, Is.EqualTo(10));
+            Assert.That(V.length == 10);
         }
 
         [Test]
@@ -53,7 +47,7 @@ namespace fnMath.Tests
 
             // Check each value to ensure it is the same as what was passed to the object
             for(int i=0; i<length; i++)
-                Assert.That(V[i], Is.EqualTo(value));
+                Assert.That(V[i] == value);
         }
 
         [Test]
@@ -77,20 +71,22 @@ namespace fnMath.Tests
 
             // ------------------------- Compare Objects
             for (int i = 0; i < length; i++)
-                Assert.That(V[i], Is.EqualTo(V_prime[i]),message + "V should equal V_prime");
+                Assert.That(V[i] == V_prime[i],
+                    message + "V should equal V_prime");
 
-            Assert.That(V.isColumn, Is.EqualTo(V_prime.isColumn), message + "Column vector flag not preserved in copy operation");
+            Assert.That(V.isColumn == V_prime.isColumn, 
+                message + "Column vector flag not preserved in copy operation");
 
-            Assert.That(V.isRow, Is.EqualTo(V_prime.isRow), message + "Row vector flag not preserved in copy operation");
+            Assert.That(V.isRow == V_prime.isRow,
+                message + "Row vector flag not preserved in copy operation");
 
             // ------------------------- Change a value in one object
             V[0] = V[length - 1];
 
             // ------------------------- Check that the values have not 
             // ------------------------- changed in the copy
-            Assert.That(V[0], Is.Not.EqualTo(V_prime[0]), message + "Values should not be equal after reassignment");
-
-
+            Assert.That(V[0] != V_prime[0],
+                message + "Values should not be equal after reassignment");
         }
 
         [Test]
@@ -104,7 +100,7 @@ namespace fnMath.Tests
 
             // Check each value to ensure it is the same as what was passed to the object
             for (int i = 0; i < length; i++)
-                Assert.That(V[i], Is.EqualTo(value));
+                Assert.That(V[i] == value);
         }
 
         [Test]
@@ -128,19 +124,22 @@ namespace fnMath.Tests
 
             // ------------------------- Compare Objects
             for (int i = 0; i < length; i++)
-                Assert.That(V[i], Is.EqualTo(V_prime[i]), message + "V should equal V_prime");
+                Assert.That(V[i] == V_prime[i],
+                    message + "V should equal V_prime");
 
-            Assert.That(V.isColumn, Is.EqualTo(V_prime.isColumn), message + "Column vector flag not preserved in copy operation");
+            Assert.That(V.isColumn == V_prime.isColumn,
+                message + "Column vector flag not preserved in copy operation");
 
-            Assert.That(V.isRow, Is.EqualTo(V_prime.isRow), message + "Row vector flag not preserved in copy operation");
+            Assert.That(V.isRow == V_prime.isRow,
+                message + "Row vector flag not preserved in copy operation");
 
             // ------------------------- Change a value in one object
             V[0] = V[length - 1];
 
             // ------------------------- Check that the values have not 
             // ------------------------- changed in the copy
-            Assert.That(V[0], Is.Not.EqualTo(V_prime[0]), message + "Values should not be equal after reassignment");
-
+            Assert.That(V[0] != V_prime[0],
+                message + "Values should not be equal after reassignment");
 
         }
 
@@ -157,11 +156,11 @@ namespace fnMath.Tests
 
             Vector<double> B = new Vector<double>(A);
 
-            Assert.That(A.Length, Is.EqualTo(B.length));
+            Assert.That(A.Length == B.length);
 
             for(int i=0; i<length; i++)
             {
-                Assert.That(A[i], Is.EqualTo(B[i]));
+                Assert.That(A[i] == B[i]);
             }
 
         }
@@ -191,22 +190,22 @@ namespace fnMath.Tests
             Vector<double> C = A + B;
 
             // ------------------------- Check the results
-            Assert.That(C.length, Is.EqualTo(A.length));
+            Assert.That(C.length == A.length);
 
             for (int i = 0; i < length; i++)
-                Assert.That(C[i], Is.EqualTo(A[i] + B[i]));
+                Assert.That(C[i] == A[i] + B[i]);
 
             // ------------------------- Add them as column and row
             A.isRow = true;
             C = A + B;
 
-            Assert.That(C.length, Is.EqualTo(1));
+            Assert.That(C.length == 1);
 
             double sum = 0;
             for (int i = 0; i < length; i++)
                 sum += A[i] + B[i];
 
-            Assert.That(C[0], Is.EqualTo(sum));
+            Assert.That(C[0] == sum);
         }
 
         [Test]
@@ -227,22 +226,22 @@ namespace fnMath.Tests
             Vector<int> C = A + B;
 
             // ------------------------- Check the results
-            Assert.That(C.length, Is.EqualTo(A.length));
+            Assert.That(C.length == A.length);
 
             for (int i = 0; i < length; i++)
-                Assert.That(C[i], Is.EqualTo(A[i] + B[i]));
+                Assert.That(C[i] == A[i] + B[i]);
 
             // ------------------------- Add them as column and row
             A.isRow = true;
             C = A + B;
 
-            Assert.That(C.length, Is.EqualTo(1));
+            Assert.That(C.length == 1);
 
             int sum = 0;
             for (int i = 0; i < length; i++)
                 sum += A[i] + B[i];
 
-            Assert.That(C[0], Is.EqualTo(sum));
+            Assert.That(C[0] == sum);
 
         }
 
@@ -264,22 +263,22 @@ namespace fnMath.Tests
             Vector<double> C = A - B;
 
             // ------------------------- Check the results
-            Assert.That(C.length, Is.EqualTo(A.length));
+            Assert.That(C.length == A.length);
 
             for (int i = 0; i < length; i++)
-                Assert.That(C[i], Is.EqualTo(A[i] - B[i]));
+                Assert.That(C[i] == A[i] - B[i]);
 
             // ------------------------- Add them as column and row
             A.isRow = true;
             C = A - B;
 
-            Assert.That(C.length, Is.EqualTo(1));
+            Assert.That(C.length == 1);
 
             double sum = 0;
             for (int i = 0; i < length; i++)
                 sum += A[i] - B[i];
 
-            Assert.That(C[0], Is.EqualTo(sum));
+            Assert.That(C[0] == sum);
         }
 
         [Test]
@@ -300,22 +299,22 @@ namespace fnMath.Tests
             Vector<int> C = A - B;
 
             // ------------------------- Check the results
-            Assert.That(C.length, Is.EqualTo(A.length));
+            Assert.That(C.length == A.length);
 
             for (int i = 0; i < length; i++)
-                Assert.That(C[i], Is.EqualTo(A[i] - B[i]));
+                Assert.That(C[i] == A[i] - B[i]);
 
             // ------------------------- Add them as column and row
             A.isRow = true;
             C = A - B;
 
-            Assert.That(C.length, Is.EqualTo(1));
+            Assert.That(C.length == 1);
 
             int sum = 0;
             for (int i = 0; i < length; i++)
                 sum += A[i] - B[i];
 
-            Assert.That(C[0], Is.EqualTo(sum));
+            Assert.That(C[0] == sum);
 
         }
 
@@ -335,10 +334,10 @@ namespace fnMath.Tests
             Vector<double> C = A + b;
 
             // ------------------------- Check the results
-            Assert.That(C.length, Is.EqualTo(A.length));
+            Assert.That(C.length == A.length);
 
             for (int i = 0; i < length; i++)
-                Assert.That(C[i], Is.EqualTo(A[i] + b));
+                Assert.That(C[i] == A[i] + b);
         }
 
         [Test]
@@ -357,10 +356,10 @@ namespace fnMath.Tests
             Vector<int> C = A + b;
 
             // ------------------------- Check the results
-            Assert.That(C.length, Is.EqualTo(A.length));
+            Assert.That(C.length == A.length);
 
             for (int i = 0; i < length; i++)
-                Assert.That(C[i], Is.EqualTo(A[i] + b));
+                Assert.That(C[i] == A[i] + b);
         }
 
         [Test]
@@ -379,10 +378,10 @@ namespace fnMath.Tests
             Vector<double> C = A - b;
 
             // ------------------------- Check the results
-            Assert.That(C.length, Is.EqualTo(A.length));
+            Assert.That(C.length == A.length);
 
             for (int i = 0; i < length; i++)
-                Assert.That(C[i], Is.EqualTo(A[i] - b));
+                Assert.That(C[i] == A[i] - b);
         }
 
         [Test]
@@ -401,10 +400,10 @@ namespace fnMath.Tests
             Vector<int> C = A - b;
 
             // ------------------------- Check the results
-            Assert.That(C.length, Is.EqualTo(A.length));
+            Assert.That(C.length == A.length);
 
             for (int i = 0; i < length; i++)
-                Assert.That(C[i], Is.EqualTo(A[i] - b));
+                Assert.That(C[i] == A[i] - b);
         }
 
         [Test]
@@ -423,10 +422,10 @@ namespace fnMath.Tests
             Vector<double> C = A * b;
 
             // ------------------------- Check the results
-            Assert.That(C.length, Is.EqualTo(A.length));
+            Assert.That(C.length == A.length);
 
             for (int i = 0; i < length; i++)
-                Assert.That(C[i], Is.EqualTo(A[i] * b));
+                Assert.That(C[i] == A[i] * b);
         }
 
         [Test]
@@ -445,10 +444,10 @@ namespace fnMath.Tests
             Vector<int> C = A * b;
 
             // ------------------------- Check the results
-            Assert.That(C.length, Is.EqualTo(A.length));
+            Assert.That(C.length == A.length);
 
             for (int i = 0; i < length; i++)
-                Assert.That(C[i], Is.EqualTo(A[i] * b));
+                Assert.That(C[i] == A[i] * b);
         }
 
         #endregion
@@ -484,11 +483,11 @@ namespace fnMath.Tests
 
             // ------------------------- Check A dot B
             aDotb = A.Dot(B);
-            Assert.That(aDotb, Is.EqualTo(12.0));
+            Assert.That(aDotb == 12.0);
 
             // ------------------------- Check B dot A =  A dot B
             bDota = B.Dot(A);
-            Assert.That(bDota, Is.EqualTo(aDotb));
+            Assert.That(bDota == aDotb);
         }
 
         [Test]
