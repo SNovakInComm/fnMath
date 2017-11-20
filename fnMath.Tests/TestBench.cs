@@ -11,6 +11,10 @@ namespace fnMath.Tests
 
     public class TestBench
     {
+
+        private static System.ConsoleColor defaultForegroundColor = System.Console.ForegroundColor;
+        private static System.ConsoleColor defaultBackgroundColor = System.Console.BackgroundColor;
+
         static void Main(string[] args)
         {
             Console.Write("\n\n\n");
@@ -45,15 +49,39 @@ namespace fnMath.Tests
 
                 Object testFixture = Activator.CreateInstance(t);
 
-                foreach(MethodInfo info in methods.Where(n => n.GetCustomAttributes(typeof(Test), false).Length > 0))
+                foreach (MethodInfo info in methods.Where(n => n.GetCustomAttributes(typeof(Test), false).Length > 0))
                 {
                     Object someObject = new object();
-                    System.Console.WriteLine(info + "\n");
-                    TestDelegate del = (TestDelegate) Delegate.CreateDelegate(typeof(TestDelegate), testFixture, info);
-                    object result = del.
-                }
+                    TestDelegate del = (TestDelegate)Delegate.CreateDelegate(typeof(TestDelegate), testFixture, info);
+                    //object result = del();
 
+                    Assert.lastTestPassed = false;
+
+                    del();
+
+                    if (!Assert.lastTestPassed)
+                    {
+                        System.Console.ForegroundColor = defaultForegroundColor;
+                        System.Console.Write("\nTest failed: ");
+
+                        System.Console.ForegroundColor = ConsoleColor.Red;
+                        System.Console.BackgroundColor = ConsoleColor.White;
+
+                        System.Console.WriteLine("\n----- " + info + "\n");
+                        System.Console.ForegroundColor = defaultForegroundColor;
+                    }
+
+                }
             }
+
+            Console.Write("\n\n\n");
+            Console.Write("**************************************************\n");
+            Console.Write("                  Tests Finished\n");
+            Console.Write("**************************************************\n\n\n");
+            System.Console.WriteLine("Summary:");
+            System.Console.WriteLine("Tests Passed: " + Assert.passedTests);
+            System.Console.WriteLine("Tests Failed: " + Assert.failedTests);
+            System.Console.WriteLine("\n");
 
             return;
         }

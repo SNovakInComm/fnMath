@@ -21,22 +21,37 @@ namespace fnMath.Tests
 
     public static class Assert
     {
+        public static bool lastTestPassed = false;
+        public static int passedTests = 0;
+        public static int failedTests = 0;
+
         #region Thats 
 
         public static int That(bool test)
         {
+            lastTestPassed = false;
             if (test)
+            {
+                testPassed();
                 return 0;
+            }
             else
+            {
+                testFailed();
                 return -1;
+            }
         }
 
         public static int That(bool test, string failureMessage)
         {
             if (test)
+            {
+                testPassed();
                 return 0;
+            }
             else
             {
+                testFailed();
                 Console.Write(failureMessage);
                 return -1;
             }
@@ -50,6 +65,7 @@ namespace fnMath.Tests
             try
             {
                 function();
+                testFailed();
                 Console.Write("No Exception Thrown");
                 return -1;
             }
@@ -59,6 +75,7 @@ namespace fnMath.Tests
                     return 0;
                 else
                 {
+                    testPassed();
                     Console.WriteLine("Exception: " + e.ToString() + " is not expected type!");
                     return -1;
                 }
@@ -70,6 +87,7 @@ namespace fnMath.Tests
             try
             {
                 function();
+                testFailed();
                 Console.Write("No Exception Thrown: " + message);
                 return -1;
             }
@@ -79,6 +97,7 @@ namespace fnMath.Tests
                     return 0;
                 else
                 {
+                    testPassed();
                     Console.WriteLine("Exception: " + e.ToString() + " is not expected type! " + message);
                     return -1;
                 }
@@ -86,5 +105,22 @@ namespace fnMath.Tests
         }
 
         #endregion
+
+        #region Private Methods
+
+        private static void testPassed()
+        {
+            lastTestPassed = true;
+            passedTests++;
+        }
+
+        private static void testFailed()
+        {
+            lastTestPassed = false;
+            failedTests++;
+        }
+
+        #endregion
+
     }
 }

@@ -483,7 +483,7 @@ namespace fnMath.Tests
 
             // ------------------------- Check A dot B
             aDotb = A.Dot(B);
-            Assert.That(aDotb == 12.0);
+            Assert.That(aDotb == 13.0);
 
             // ------------------------- Check B dot A =  A dot B
             bDota = B.Dot(A);
