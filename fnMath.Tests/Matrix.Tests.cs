@@ -134,7 +134,6 @@ namespace fnMath.Tests
             Assert.That(C.columns == C.rows); // The result from this operation should be symmetric
             Assert.That(C.columns == 2,
                 "Unexpected Column / row count in matrix multiplication");      // And equal to 2
-
             Assert.That(C[0][0] == 58,
                 "Arithmatic error in matrix multiplication");       // This check both the values and
             Assert.That(C[0][1] == 64,
@@ -147,14 +146,14 @@ namespace fnMath.Tests
             // ------------------------- Test Multiplication 2
             C = B * A;
 
-            Assert.That(C.columns == C.rows); 
+            Assert.That(C.columns == C.rows);
             Assert.That(C.columns == 3,
-                "Unexpected Column / row count in matrix multiplication");      
+                "Unexpected Column / row count in matrix multiplication");
 
             Assert.That(C[0][0] == 39, 
-                "Arithmatic error in matrix multiplication");       
+                "Arithmatic error in matrix multiplication");
             Assert.That(C[0][1] == 54,
-                "Arithmatic error in matrix multiplication");       
+                "Arithmatic error in matrix multiplication");
             Assert.That(C[0][2] == 69,
                 "Arithmatic error in matrix multiplication");
 

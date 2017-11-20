@@ -21,8 +21,8 @@ namespace fnMath
 
         #region Members
 
-        private Vector<T>[] _data;         // Actual Data Contained in Matrix
-        int _rows, _columns;        // Number Of Rows and Columns in The Matrix
+        protected Vector<T>[] _data;         // Actual Data Contained in Matrix
+        protected int _rows, _columns;        // Number Of Rows and Columns in The Matrix
 
         #endregion
 
@@ -258,5 +258,29 @@ namespace fnMath
         // --------------------------------------------------
         // ------------------------- Private Methods
 
+        #region Private Methods
+
+
+
+        #endregion
+            
+        // --------------------------------------------------
+        // ------------------------- Utility Methods
+
+        #region Utility Methods
+
+        public void Print()
+        {
+
+            for (int i = 0; i < _rows; i++)
+            {
+                for (int j = 0; j < _columns; j++)
+                    Globals.Print(_data[i][j] + " ");
+                Globals.Print("\n");
+            }
+            Globals.Print("\n");
+        }
+
+        #endregion
     }
 }

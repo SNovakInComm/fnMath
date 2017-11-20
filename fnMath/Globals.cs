@@ -28,6 +28,23 @@ namespace fnMath
 
         #endregion
 
+
+        // --------------------------------------------------
+        // ------------------------- Constructor
+
+        #region Constructor
+
+        /// <summary>
+        /// Static Constructor
+        /// </summary>
+        static Globals()
+        {
+            _outputStream = null;
+            _inputStream = null;
+        }
+
+        #endregion
+
         // --------------------------------------------------
         // ------------------------- Accessors
 
@@ -77,25 +94,27 @@ namespace fnMath
             _outputStream.WriteLine(line);
         }
 
-        #endregion
-
-        // --------------------------------------------------
-        // ------------------------- Constructor
-
-        #region Constructor
-        
         /// <summary>
-        /// Static Constructor
+        /// Opens a CSV file for reading 
         /// </summary>
-        static Globals()
+        /// <param name="fileName">Name of the file to open</param>
+        public static void OpenCSVFile(string fileName)
         {
-            _outputStream = null;
-            _inputStream = null;
+            if (_inputStream != null)
+                _inputStream.Close();
+            _inputStream = new StreamReader(fileName);
         }
 
         #endregion
 
+        // --------------------------------------------------
+        // -------------------------  Private Methods
 
+        #region Private Methods
+
+
+
+        #endregion
 
     }
 }

@@ -231,6 +231,7 @@ namespace fnMath
             return c;
         }
 
+        /*
         public Matrix<T> Cross(Vector<T> B)
         {
             Matrix<T> C = new Matrix<T>();
@@ -239,7 +240,7 @@ namespace fnMath
 
             return C;
         }
-
+        */
         #endregion
 
         // --------------------------------------------------
@@ -255,7 +256,7 @@ namespace fnMath
 
         #region Utility Methods
 
-        public void print()
+        public void Print()
         {
 
             for (int i = 0; i < _data.Length; i++)

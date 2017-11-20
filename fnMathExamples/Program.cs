@@ -15,6 +15,8 @@ namespace fnMathExamples
         {
             Working_With_Vectors();
 
+            SolvingLinearSystemsOfEquations();
+
             return;
         }
 
@@ -43,12 +45,12 @@ namespace fnMathExamples
             Globals.PrintLine("Print out a column vector:");
             Globals.PrintLine("----------------------------------");
             V.isColumn = true;
-            V.print();          // Should print vertically
+            V.Print();          // Should print vertically
 
             Globals.PrintLine("Print out a row vector:");
             Globals.PrintLine("----------------------------------");
             V.isColumn = false;
-            V.print();          // Should print horizontally
+            V.Print();          // Should print horizontally
 
 
             // ------------------------- Now make a new vector from the existing one
@@ -64,14 +66,37 @@ namespace fnMathExamples
             Vector<double> diff = rowVector - columnVector;
 
             Globals.PrintLine("rowVector + columnVector = ");
-            sum.print();
+            sum.Print();
             Globals.PrintLine("rowVector - columnVector = ");
-            diff.print();
+            diff.Print();
 
 
 
         }
 
-        #endregion  
+        #endregion
+
+        #region Solving Linear Systems Of Equations
+        private static void SolvingLinearSystemsOfEquations()
+        {
+            Globals.setOutputToConsole();
+            Matrix<double> A = new Matrix<double>(2, 2);
+            LU<double> B;
+
+            A[0][0] = 3.0;
+            A[1][0] = 4.0;
+
+            A[0][1] = 1.0;
+            A[1][1] = 2.0;
+
+            B = new LU<double>(A);
+
+            A.Print();
+            B.Print();
+            B.Upper().Print();
+            B.Lower().Print();
+        }
+
+        #endregion
     }
 }

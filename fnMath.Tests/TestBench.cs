@@ -53,12 +53,11 @@ namespace fnMath.Tests
                 {
                     Object someObject = new object();
                     TestDelegate del = (TestDelegate)Delegate.CreateDelegate(typeof(TestDelegate), testFixture, info);
-                    //object result = del();
 
-                    Assert.lastTestPassed = false;
+                    Assert.lastTestPassed = true;
 
                     del();
-
+                    
                     if (!Assert.lastTestPassed)
                     {
                         System.Console.ForegroundColor = defaultForegroundColor;
@@ -67,14 +66,16 @@ namespace fnMath.Tests
                         System.Console.ForegroundColor = ConsoleColor.Red;
                         System.Console.BackgroundColor = ConsoleColor.White;
 
-                        System.Console.WriteLine("\n----- " + info + "\n");
+                        System.Console.WriteLine("\n-----" + info + "");
                         System.Console.ForegroundColor = defaultForegroundColor;
                     }
 
                 }
+                System.Console.WriteLine("-----Tests Passed: " + Assert.passedTests);
+                System.Console.WriteLine("-----Tests Failed: " + Assert.failedTests + "\n\n");
             }
 
-            Console.Write("\n\n\n");
+            Console.Write("\n");
             Console.Write("**************************************************\n");
             Console.Write("                  Tests Finished\n");
             Console.Write("**************************************************\n\n\n");

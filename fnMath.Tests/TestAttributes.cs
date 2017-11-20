@@ -29,7 +29,6 @@ namespace fnMath.Tests
 
         public static int That(bool test)
         {
-            lastTestPassed = false;
             if (test)
             {
                 testPassed();
@@ -110,7 +109,7 @@ namespace fnMath.Tests
 
         private static void testPassed()
         {
-            lastTestPassed = true;
+            //lastTestPassed = true;
             passedTests++;
         }
 
