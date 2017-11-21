@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 using fnMath;
 
@@ -423,6 +424,26 @@ namespace fnMath.Tests
                 "Error finsing AbsMin val in matrix");
             Assert.That(result < 0.0,
                 "Sign error finding AbsMin val in matrix");
+        }
+
+        [Test]
+        public void testMatrixIdentity_Complex()
+        {
+
+            Matrix<Complex> A = new Matrix<Complex>(3, 3);
+
+            A[0][0] = -10;
+            A[1][1] = 5;
+            A.Identity();
+
+            for (int i = 0; i < A.rows; i++)
+                for (int j = 0; j < A.columns; j++)
+                    if (i == j)
+                        Assert.That(A[i][j] == 1.0,
+                            "Diagonal not unity on matrix identity!!");
+                    else
+                        Assert.That(A[i][j] == 0.0,
+                            "Off diagonal not zero on matrix identity!!");
         }
 
         #endregion

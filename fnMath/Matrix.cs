@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace fnMath
 {
@@ -12,8 +13,6 @@ namespace fnMath
     /// <typeparam name="T">Numeric Type</typeparam>
     public class Matrix<T>
         where T : struct,
-        IComparable<T>,
-        IConvertible,
         IEquatable<T>
     {
         // --------------------------------------------------

@@ -21,6 +21,7 @@
 	<Target Name="Build">
 		<MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
 		<Csc 	Sources="@(Compile)"
+				References="System.Numerics.dll"
 				DefineConstants="DEBUG"
 				TargetType="library"
 				OutputAssembly="$(OutputPath)\$(LibraryName).dll" />
@@ -32,7 +33,7 @@
 		
 		
 		<Csc 	Sources="@(UnitTests)"
-				References="$(OutputPath)\TestAttributes.dll,$(OutputPath)\$(LibraryName).dll"
+				References="$(OutputPath)\TestAttributes.dll,$(OutputPath)\$(LibraryName).dll,System.Numerics.dll"
 				DefineConstants="DEBUG"
 				TargetType="library"
 				OutputAssembly="$(OutputPath)\$(LibraryName).Test.dll" />

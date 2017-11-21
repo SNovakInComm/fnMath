@@ -8,8 +8,6 @@ namespace fnMath
 {
     public class Vector<T>
          where T : struct,
-         IComparable<T>,
-         IConvertible,
          IEquatable<T>
    
     {
