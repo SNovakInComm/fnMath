@@ -1,0 +1,26 @@
+$ cat .gitignore
+
+# exclude everything
+/*
+
+!/fnMath
+/fnMath/bin
+/fnMath/obj
+/fnMath/Properties
+
+!/fnMath.Tests
+/fnMath.Tests/bin
+/fnMath.Tests/obj
+/fnMath.Tests/Properties
+
+!/fnMathExamples
+/fnMathExamples/bin
+/fnMathExamples/obj
+/fnMathExamples/Properties
+
+# Include s few root files
+
+!fnMath.sln
+!readme.md
+!.gitignore
+!BuildAll.csproj
