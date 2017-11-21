@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factorial.Tests.cs" />
     <Compile Include="LU.Tests.cs" />
     <Compile Include="Matrix.Tests.cs" />
+    <Compile Include="QR.Tests.cs" />
     <Compile Include="TestAttributes.cs" />
     <Compile Include="TestBench.cs" />
     <Compile Include="Vector.Tests.cs" />

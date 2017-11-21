@@ -25,6 +25,19 @@ namespace fnMath.Tests
         public static int passedTests = 0;
         public static int failedTests = 0;
 
+        public static int totalPassedTests = 0;
+        public static int totalFailedTests = 0;
+
+        #region Bookkeeping
+
+        public static void NewTestFixture()
+        {
+            passedTests = 0;
+            failedTests = 0;
+        }
+
+        #endregion
+
         #region Thats 
 
         public static int That(bool test)
@@ -51,7 +64,7 @@ namespace fnMath.Tests
             else
             {
                 testFailed();
-                Console.Write(failureMessage);
+                Console.Write(failureMessage + "\n");
                 return -1;
             }
         }
@@ -65,17 +78,20 @@ namespace fnMath.Tests
             {
                 function();
                 testFailed();
-                Console.Write("No Exception Thrown");
+                Console.Write("No Exception Thrown\n");
                 return -1;
             }
             catch (Exception e)
             {
                 if (e is TException)
-                    return 0;
-                else
                 {
                     testPassed();
-                    Console.WriteLine("Exception: " + e.ToString() + " is not expected type!");
+                    return 0;
+                }
+                else
+                {
+                    testFailed();
+                    Console.WriteLine("Exception: " + e.ToString() + " is not expected type!\n");
                     return -1;
                 }
             }
@@ -87,17 +103,20 @@ namespace fnMath.Tests
             {
                 function();
                 testFailed();
-                Console.Write("No Exception Thrown: " + message);
+                Console.Write("No Exception Thrown: " + message + "\n");
                 return -1;
             }
             catch (Exception e)
             {
                 if (e is TException)
-                    return 0;
-                else
                 {
                     testPassed();
-                    Console.WriteLine("Exception: " + e.ToString() + " is not expected type! " + message);
+                    return 0;
+                }
+                else
+                {
+                    testFailed();
+                    Console.WriteLine("Exception: " + e.ToString() + " is not expected type! " + message + "\n");
                     return -1;
                 }
             }
@@ -110,12 +129,14 @@ namespace fnMath.Tests
         private static void testPassed()
         {
             //lastTestPassed = true;
+            totalPassedTests++;
             passedTests++;
         }
 
         private static void testFailed()
         {
             lastTestPassed = false;
+            totalFailedTests++;
             failedTests++;
         }
 

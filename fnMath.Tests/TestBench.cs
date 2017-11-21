@@ -43,11 +43,13 @@ namespace fnMath.Tests
             foreach (Type t in listOfTestFixtures)
             {
                 System.Console.WriteLine("Type is: " +t.ToString());
-
+                Assert.NewTestFixture();
 
                 MethodInfo[] methods = t.GetMethods();
 
                 Object testFixture = Activator.CreateInstance(t);
+
+                int testNum = 1;
 
                 foreach (MethodInfo info in methods.Where(n => n.GetCustomAttributes(typeof(Test), false).Length > 0))
                 {
@@ -61,7 +63,7 @@ namespace fnMath.Tests
                     if (!Assert.lastTestPassed)
                     {
                         System.Console.ForegroundColor = defaultForegroundColor;
-                        System.Console.Write("\nTest failed: ");
+                        System.Console.Write("\nTest failed: " + info + "  test(" + testNum + " / " + methods.Length + ")" );
 
                         System.Console.ForegroundColor = ConsoleColor.Red;
                         System.Console.BackgroundColor = ConsoleColor.White;
@@ -69,7 +71,7 @@ namespace fnMath.Tests
                         System.Console.WriteLine("\n-----" + info + "");
                         System.Console.ForegroundColor = defaultForegroundColor;
                     }
-
+                    testNum++;
                 }
                 System.Console.WriteLine("-----Tests Passed: " + Assert.passedTests);
                 System.Console.WriteLine("-----Tests Failed: " + Assert.failedTests + "\n\n");
@@ -80,8 +82,8 @@ namespace fnMath.Tests
             Console.Write("                  Tests Finished\n");
             Console.Write("**************************************************\n\n\n");
             System.Console.WriteLine("Summary:");
-            System.Console.WriteLine("Tests Passed: " + Assert.passedTests);
-            System.Console.WriteLine("Tests Failed: " + Assert.failedTests);
+            System.Console.WriteLine("Tests Passed: " + Assert.totalPassedTests);
+            System.Console.WriteLine("Tests Failed: " + Assert.totalFailedTests);
             System.Console.WriteLine("\n");
 
             return;
