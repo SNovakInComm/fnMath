@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Exceptions.cs" />
     <Compile Include="Factorial.cs" />
+    <Compile Include="Function.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="LU.cs" />
     <Compile Include="Matrix.cs" />
