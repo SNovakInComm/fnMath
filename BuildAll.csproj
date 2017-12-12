@@ -50,6 +50,10 @@
 		<Delete Files="$(OutputPath)$(AssemblyName).dll" />			
 	</Target>
 	
+	<Target Name="Restore">
+		<Delete Files="$(OutputPath)$(AssemblyName).dll" />			
+	</Target>
+
 	<Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 	
 </Project>
