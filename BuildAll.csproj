@@ -2,9 +2,9 @@
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<PropertyGroup>
-		<LibraryName>.\fnMath</LibraryName>
-		<TestAssemblyName>.\Tester</TestAssemblyName>
-		<OutputPath>.\bin</OutputPath>
+		<LibraryName>fnMath</LibraryName>
+		<TestAssemblyName>Tester</TestAssemblyName>
+		<OutputPath>$(MSBuildProjectDirectory)\bin</OutputPath>
 		<NETFramework>C:\Windows\Microsoft.NET\Framework64\v4.0.30319</NETFramework>
 	</PropertyGroup>
 	
@@ -34,7 +34,7 @@
 		
 		
 		<Csc 	Sources="@(UnitTests)"
-				References="$(OutputPath)\TestAttributes.dll,$(OutputPath)\$(LibraryName).dll,$(NETFramework)\System.Numerics.dll"
+				References="System.Numerics.dll,$(OutputPath)\TestAttributes.dll,$(OutputPath)\$(LibraryName).dll"
 				DefineConstants="DEBUG"
 				TargetType="library"
 				OutputAssembly="$(OutputPath)\$(LibraryName).Test.dll" />
@@ -43,8 +43,9 @@
 				References="$(OutputPath)\TestAttributes.dll"
 				DefineConstants="DEBUG"
 				TargetType="exe"
-				OutputAssembly="$(OutputPath)\$(LibraryName).Tester.exe " />
-		<Exec Command="$(OutputPath)\$(LibraryName).Tester.exe $(LibraryName).Test.dll"/>
+				OutputAssembly="$(OutputPath)\$(LibraryName).Tester.exe" />
+				
+		
 	</Target>
 	
 	<Target Name="Clean">
