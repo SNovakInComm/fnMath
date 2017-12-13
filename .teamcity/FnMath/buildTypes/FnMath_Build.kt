@@ -19,7 +19,7 @@ object FnMath_Build : BuildType({
 
     steps {
         dotnetRestore {
-           name = "Restore It Yo!"
+           name = "Restore Packages"
            param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
         }
         msBuild {
