@@ -16,10 +16,10 @@ object FnMath_Build : BuildType({
     }
 
     steps {
-        dotnetRestore {
-            name = "Restore It Yo!"
-            param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
-        }
+        //dotnetRestore {
+        //    name = "Restore It Yo!"
+        //    param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
+        //}
         msBuild {
             path = "BuildAll.csproj"
             toolsVersion = MSBuildStep.MSBuildToolsVersion.V15_0
