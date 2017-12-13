@@ -20,6 +20,7 @@ namespace fnMath
     IConvertible,
     IEquatable<T>
     {
+        // stupid change
         // --------------------------------------------------
         // ------------------------- Members
 
