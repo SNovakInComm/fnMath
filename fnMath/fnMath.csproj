@@ -48,6 +48,7 @@
     <Compile Include="Factorial.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="Integral.cs" />
     <Compile Include="LU.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -50,7 +50,7 @@ namespace fnMath.Tests
 
             foreach (Type t in listOfTestFixtures)
             {
-                System.Console.WriteLine("Type is: " +t.ToString());
+                System.Console.WriteLine("Type is: " + t.ToString() + " ");
                 Assert.NewTestFixture();
 
                 MethodInfo[] methods = t.GetMethods();
@@ -58,6 +58,9 @@ namespace fnMath.Tests
                 Object testFixture = Activator.CreateInstance(t);
 
                 int testNum = 1;
+                
+                // Start Clock
+                DateTime Start = DateTime.Now;
 
                 foreach (MethodInfo info in methods.Where(n => n.GetCustomAttributes(typeof(Test), false).Length > 0))
                 {
@@ -67,7 +70,7 @@ namespace fnMath.Tests
                     Assert.lastTestPassed = true;
 
                     del();
-                    
+
                     if (!Assert.lastTestPassed)
                     {
                         System.Console.ForegroundColor = defaultForegroundColor;
@@ -81,8 +84,13 @@ namespace fnMath.Tests
                     }
                     testNum++;
                 }
+
+                DateTime End = DateTime.Now;
+                var delta = End - Start;
+                
                 System.Console.WriteLine("-----Tests Passed: " + Assert.passedTests);
-                System.Console.WriteLine("-----Tests Failed: " + Assert.failedTests + "\n\n");
+                System.Console.WriteLine("-----Tests Failed: " + Assert.failedTests);
+                System.Console.WriteLine(delta.Seconds + "." + delta.Milliseconds + " s elapsed\n\n");
             }
 
             Console.Write("\n");

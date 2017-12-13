@@ -29,10 +29,16 @@ namespace fnMath
         // ------------------------- Members
 
         #region Members
+
         public const string GLOBAL_VERSION = "0.0.0.1";
 
         static StreamWriter _outputStream;      // Used for data output
         static StreamReader _inputStream;       // Used for data input
+        static uint _MAXITER;                   // Maximum Iterations
+        static double _absErr;                  // Absolute Error limit
+        static double _relErr;                  // Relative Error limit
+        static double _lastErr;                 // Relative Error limit
+        static int _iterations;                 // Relative Error limit
 
         #endregion
 
@@ -49,6 +55,10 @@ namespace fnMath
         {
             _outputStream = null;
             _inputStream = null;
+            _MAXITER = 20;
+            _absErr = 1e-5;
+            _relErr = 1e-10;
+            _lastErr = 0.0;
         }
 
         #endregion
@@ -76,6 +86,16 @@ namespace fnMath
         {
             _outputStream = new StreamWriter(fileName);
         }
+
+        public static uint MAXITER { get { return _MAXITER; } set { _MAXITER = value; } }
+
+        public static double absErr { get { return _absErr; } set { _absErr = value; } }
+
+        public static double relErr { get { return _relErr; } set { _relErr = value; } }
+
+        public static double lastErr { get { return _lastErr; } set { _relErr = _lastErr; } }
+
+        public static int iterations { get { return _iterations; } set { _iterations = value; } }
 
         #endregion
 

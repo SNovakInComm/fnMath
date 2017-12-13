@@ -13,10 +13,10 @@ using System.Threading.Tasks;
 
 namespace fnMath
 {
-    interface Function<T>
+    public interface Function
     {
-        T Evaluate(T x);
+        double Evaluate(double x);
 
-        T Evaluate(T[] X);
+        double Evaluate(Vector<double> X);
     }
 }
