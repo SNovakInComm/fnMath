@@ -3,6 +3,7 @@ package FnMath.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.MSBuildStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.msBuild
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.ExecutionMode
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.DotnetRestoreStep
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.dotnetRestore
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
