@@ -16,6 +16,11 @@ object FnMath_Build : BuildType({
     }
 
     steps {
+        dotNetRestore{
+            enabled = false
+            name = "RestoreStep"
+            
+        }
         msBuild {
             path = "BuildAll.csproj"
             toolsVersion = MSBuildStep.MSBuildToolsVersion.V15_0
