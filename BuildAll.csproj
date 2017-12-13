@@ -30,21 +30,7 @@
 		<Csc 	Sources="@(TestRef)"
 				DefineConstants="DEBUG"
 				TargetType="library"
-				OutputAssembly="$(OutputPath)\TestAttributes.dll" />
-		
-		
-		<Csc 	Sources="@(UnitTests)"
-				References="System.Numerics.dll,$(OutputPath)\TestAttributes.dll,$(OutputPath)\$(LibraryName).dll"
-				DefineConstants="DEBUG"
-				TargetType="library"
-				OutputAssembly="$(OutputPath)\$(LibraryName).Test.dll" />
-				
-		<Csc 	Sources="@(Tester)"
-				References="$(OutputPath)\TestAttributes.dll"
-				DefineConstants="DEBUG"
-				TargetType="exe"
-				OutputAssembly="$(OutputPath)\$(LibraryName).Tester.exe" />
-				
+				OutputAssembly="$(OutputPath)\TestAttributes.dll" />		
 		
 	</Target>
 	
