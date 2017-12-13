@@ -34,7 +34,7 @@
 		
 		
 		<Csc 	Sources="@(UnitTests)"
-				References="$(OutputPath)\TestAttributes.dll,$(OutputPath)\$(LibraryName).dll,$(NETFramework)System.Numerics.dll"
+				References="$(OutputPath)\TestAttributes.dll,$(OutputPath)\$(LibraryName).dll,$(NETFramework)\System.Numerics.dll"
 				DefineConstants="DEBUG"
 				TargetType="library"
 				OutputAssembly="$(OutputPath)\$(LibraryName).Test.dll" />
