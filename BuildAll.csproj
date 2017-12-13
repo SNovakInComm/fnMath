@@ -5,7 +5,7 @@
 		<LibraryName>fnMath</LibraryName>
 		<TestAssemblyName>Tester</TestAssemblyName>
 		<OutputPath>bin</OutputPath>
-		<NETFramework>C:/Windows/Microsoft.NET/Framework64/v4.0.30319</NETFramework>
+		<NETFramework>C:\Windows\Microsoft.NET\Framework64\v4.0.30319</NETFramework>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(CompileConfig)' == 'DEBUG'" >
@@ -32,6 +32,19 @@
 				TargetType="library"
 				OutputAssembly="$(OutputPath)\TestAttributes.dll" />
 		
+		
+		<Csc 	Sources="@(UnitTests)"
+				References="$(OutputPath)\TestAttributes.dll,$(OutputPath)\$(LibraryName).dll,System.Numerics.dll"
+				DefineConstants="DEBUG"
+				TargetType="library"
+				OutputAssembly="$(OutputPath)\$(LibraryName).Test.dll" />
+				
+		<Csc 	Sources="@(Tester)"
+				References="$(OutputPath)\TestAttributes.dll"
+				DefineConstants="DEBUG"
+				TargetType="exe"
+				OutputAssembly="$(OutputPath)\$(LibraryName).Tester.exe " />
+		<Exec Command="$(OutputPath)\$(LibraryName).Tester.exe $(LibraryName).Test.dll"/>
 	</Target>
 	
 	<Target Name="Clean">
