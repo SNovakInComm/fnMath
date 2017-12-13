@@ -3,6 +3,8 @@ $ cat .gitignore
 # exclude everything
 /*
 
+!/.teamcity
+
 !/fnMath
 /fnMath/bin
 /fnMath/obj
