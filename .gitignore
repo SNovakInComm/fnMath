@@ -20,7 +20,7 @@ $ cat .gitignore
 
 # Include s few root files
 
-!fnMath.sln
+fnMath.sln
 !readme.md
 !.gitignore
 !BuildAll.csproj
